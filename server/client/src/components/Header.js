@@ -19,7 +19,7 @@ class Header extends Component {
     return (
       <nav>
         <div className="nav-wrapper">
-          <a href="#" className="left brand-logo">
+          <a href="*" className="left brand-logo">
             FeedbackAppSurvey
           </a>
           <ul className="right">
