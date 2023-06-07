@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import Payments from './Payments';
 
 class Header extends Component {
   renderContent() {
@@ -14,16 +15,20 @@ class Header extends Component {
           </li>
         );
       default:
-        return (
-          <li>
+        return [
+          <li key="1">
+            <Payments />
+          </li>,
+          <li key="2">
             <a href="/api/logout">Logout</a>
-          </li>
-        );
+          </li>,
+        ];
     }
   }
 
   render() {
     return (
+      //TODO add some information on the header from the web app. boton add credits, add information how many credit the client has.
       <nav>
         <div className="nav-wrapper">
           <Link
