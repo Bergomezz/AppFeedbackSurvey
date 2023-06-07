@@ -28,7 +28,7 @@ class Header extends Component {
 
   render() {
     return (
-      //TODO add some information on the header from the web app. boton add credits, add information how many credit the client has.
+      //TODO add some information on the header from the web app. information how many credit the client has.
       <nav>
         <div className="nav-wrapper">
           <Link
