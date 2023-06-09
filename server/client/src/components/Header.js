@@ -16,8 +16,11 @@ class Header extends Component {
         );
       default:
         return [
-          <li key="1">
+          <li key="1" style={{ margin: '0 10px' }}>
             <Payments />
+          </li>,
+          <li key="3" styles={{ margin: '0 10px' }}>
+            Credits: {this.props.auth.credits}
           </li>,
           <li key="2">
             <a href="/api/logout">Logout</a>
@@ -28,7 +31,6 @@ class Header extends Component {
 
   render() {
     return (
-      //TODO add some information on the header from the web app. information how many credit the client has.
       <nav>
         <div className="nav-wrapper">
           <Link
