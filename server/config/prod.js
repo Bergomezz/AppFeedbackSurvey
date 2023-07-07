@@ -9,4 +9,5 @@ module.exports = {
   sendGridKey: process.env.SEND_GRID_KEY,
   brevoKey: process.env.BREVO_BEY,
   redirectDomain: process.env.REDIRECT_DOMAIN,
+  email: process.env.EMAIL_DOMAIN,
 };
