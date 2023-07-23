@@ -1,15 +1,14 @@
-// logic to survey form review
+// SurveyFromReview shows users their form inputs for review
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const SurveyReview = ({ formData }) => {
+const SurveyFormReview = ({ onCancel }) => {
   return (
     <div>
       <h5>Please confirm your entries</h5>
-      <Link to="/surveys/new" className="red btn-flat left white-text">
+      <button className="yellow darken-3 btn-flat left " onClick={onCancel}>
         Back
         <i className="material-icons right">back</i>
-      </Link>
+      </button>
       <button type="submit" className="teal btn-flat right white-text">
         Submit
         <i className="material-icons right">done</i>
@@ -18,4 +17,4 @@ const SurveyReview = ({ formData }) => {
   );
 };
 
-export default SurveyReview;
+export default SurveyFormReview;
