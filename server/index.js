@@ -8,6 +8,7 @@ require('./models/User.js');
 require('./models/Survey.js');
 require('./services/passport.js');
 
+mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI);
 
 const app = express();
