@@ -10,6 +10,14 @@ const surveyTemplate = require('../services/emailTemplates/surveyTemplate.js');
 const Survey = mongoose.model('surveys');
 
 module.exports = app => {
+  app.get('/api/surveys', requireLogin, async (req, res) => {
+    const surveys = await Survey.find({ _user: req.user.id }).select({
+      recipients: false,
+    });
+
+    res.send(surveys);
+  });
+
   app.get('/api/surveys/:surveyId/:choice', (req, res) => {
     res.send('Thanks for voting!');
   });
@@ -17,21 +25,16 @@ module.exports = app => {
   app.post('/api/surveys/webhooks', (req, res) => {
     const p = new Path('/api/surveys/:surveyId/:choice');
 
-    _chain(req.body)
+    _.chain(req.body)
       .map(({ email, url }) => {
         const match = p.test(new URL(url).pathname);
         if (match) {
-          return {
-            email,
-            surveyId: match.surveyId,
-            choice: match.choice,
-          };
+          return { email, surveyId: match.surveyId, choice: match.choice };
         }
       })
-      .compact(events)
-      .uniqBy(compactEvents, 'email', 'surveyId')
+      .compact()
+      .uniqBy('email', 'surveyId')
       .each(({ surveyId, email, choice }) => {
-        // update the database with this event
         Survey.updateOne(
           {
             _id: surveyId,
@@ -63,6 +66,7 @@ module.exports = app => {
       dateSent: Date.now(),
     });
 
+    // Great place to send an email!
     const mailer = new Mailer(survey, surveyTemplate(survey));
 
     try {
